@@ -1,4 +1,16 @@
+import { getConcerts } from "../common";
+
 const Home = () => {
-  return <div>메인 화면</div>;
+  const testAxios = () => {
+    getConcerts().then((res) => {
+      console.log(res);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={testAxios}>테스트</button>
+    </div>
+  );
 };
 export default Home;
