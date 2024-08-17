@@ -3,7 +3,7 @@ import { getConcerts } from "../common";
 const Home = () => {
   const testAxios = () => {
     getConcerts().then((res) => {
-      console.log(res);
+      console.log(res.data);
     });
   };
 
