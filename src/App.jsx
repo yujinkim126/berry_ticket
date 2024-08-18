@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
+import Seat from "./Components/reservation/Seat";
 
 // test
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/reservation" element={<Seat />} />
         </Routes>
       </Router>
     </>
