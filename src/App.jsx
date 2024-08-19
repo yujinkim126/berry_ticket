@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import Seat from "./Components/reservation/Seat";
 
-// test
 function App() {
   return (
     <>
