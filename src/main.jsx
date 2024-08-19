@@ -1,4 +1,3 @@
-// /src/index.tsx or main.tsx(vite)
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";

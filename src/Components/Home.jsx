@@ -1,146 +1,83 @@
 const Home = () => {
-  // const testAxios = () => {
-  //   fetch("/api/concerts")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // };
+  const testAxios = () => {
+    fetch("/api/concerts")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
   return (
-    <div>
-      {/* <!-- Header--> */}
-      <header className="bg-dark py-5">
-        <div className="container px-4 px-lg-5 my-5">
-          <div className="text-center text-white">
-            <h1 className="display-4 fw-bolder">Shop in style</h1>
-            <p className="lead fw-normal text-white-50 mb-0">
-              With this shop hompeage template
+    <div className="HomePage">
+      {/** 이미지 배너 */}
+      <div className="relative font-sans before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
+        <img
+          src="https://readymadeui.com/cardImg.webp"
+          alt="Banner Image"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="min-h-[350px] relative z-50 h-full max-w-6xl mx-auto flex flex-col justify-center items-center text-center text-white p-6">
+          <h2 className="sm:text-4xl text-2xl font-bold mb-6">
+            Explore the World
+          </h2>
+          <p className="sm:text-lg text-base text-center text-gray-200">
+            Embark on unforgettable journeys. Book your dream vacation today!
+          </p>
+
+          <button
+            type="button"
+            className="mt-12 bg-transparent text-white text-base py-3 px-6 border border-white rounded-lg hover:bg-white hover:text-black transition duration-300"
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+      {/** 콘서트 리스트 컨테이너 */}
+      <div className="font-[sans-serif] my-4">
+        <div className="max-w-5xl max-lg:max-w-2xl mx-auto mt-10">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-gray-800 text-4xl font-extrabold">
+              Meet our team
+            </h2>
+            <p className="text-gray-600 text-sm mt-4 leading-relaxed">
+              Veniam proident aute magna anim excepteur et ex consectetur velit
+              ullamco veniam minim aute sit. Ullamco nisi enim ipsum irure
+              laboris ad ut. Esse cupidatat deserunt magna aute.
             </p>
           </div>
-        </div>
-      </header>
-      {/* <!-- Section--> */}
-      <section className="py-5">
-        <div className="container px-4 px-lg-5 mt-5">
-          <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div className="col mb-5">
-              <div className="card h-100">
-                {/* <!-- Product image--> */}
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-                {/* <!-- Product details--> */}
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    {/* <!-- Product name--> */}
-                    <h5 className="fw-bolder">Fancy Product</h5>
-                    {/* <!-- Product price--> */}
-                    $120.00 - $280.00
-                  </div>
+          {/** 콘서트 리스트 컨테이너 */}
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 max-md:justify-center mt-12">
+            {/** 콘서트 카드 */}
+            <div className="border rounded-md overflow-hidden max-md:max-w-[300px]">
+              <img
+                src="https://readymadeui.com/team-1.webp"
+                className="w-full h-50 object-contain object-top bg-gray-200"
+              />
+              <div className="p-4">
+                <h4 className="text-gray-800 text-base font-bold">John Doe</h4>
+                <p className="text-gray-600 text-xs mt-1">Software Engineer</p>
+
+                <div className="mt-4">
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Eiusmod commodo aliquip laboris qui anim non voluptate
+                    consectetur.
+                  </p>
                 </div>
-                {/* <!-- Product actions--> */}
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <a className="btn btn-outline-dark mt-auto" href="#">
-                      View options
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                {/* <!-- Sale badge--> */}
-                <div
-                  className="badge bg-dark text-white position-absolute"
-                  style={{ top: "0.5rem", right: "0.5rem" }}
-                >
-                  Sale
-                </div>
-                {/* <!-- Product image--> */}
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-                {/* <!-- Product details--> */}
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    {/* <!-- Product name--> */}
-                    <h5 className="fw-bolder">Special Item</h5>
-                    {/* <!-- Product reviews--> */}
-                    <div className="d-flex justify-content-center small text-warning mb-2">
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                    </div>
-                    {/* <!-- Product price--> */}
-                    <span className="text-muted text-decoration-line-through">
-                      $20.00
-                    </span>
-                    $18.00
-                  </div>
-                </div>
-                {/* <!-- Product actions--> */}
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <a className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                {/* <!-- Product image--> */}
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-                {/* <!-- Product details--> */}
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    {/* <!-- Product name--> */}
-                    <h5 className="fw-bolder">Popular Item</h5>
-                    {/* <!-- Product reviews--> */}
-                    <div className="d-flex justify-content-center small text-warning mb-2">
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                    </div>
-                    {/* <!-- Product price--> */}
-                    $40.00
-                  </div>
-                </div>
-                {/* <!-- Product actions--> */}
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <a className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </a>
-                  </div>
+
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    className="px-5 py-2.5 rounded-full text-white text-sm tracking-wider font-medium border border-current outline-none bg-blue-700 hover:bg-blue-800 active:bg-blue-700"
+                    onClick={testAxios}
+                  >
+                    테스트
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      {/* <!-- Footer--> */}
-      <footer className="py-5 bg-dark">
-        <div className="container">
-          <p className="m-0 text-center text-white">
-            Copyright &copy; Your Website 2023
-          </p>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 };
