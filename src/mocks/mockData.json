@@ -23968,5 +23968,65 @@
       "DC": "flaw",
       "PART_IMAGE": ""
     }
+  ],
+
+  "getToken": [{ "userId": 0, "position": 0, "waitingTime": "12" }],
+
+  "postToken": [
+    {
+      "userId": 0,
+      "position": 0,
+      "waitingTime": 12
+    }
+  ],
+
+  "getBalance": [
+    {
+      "userId": 0,
+      "amount": 10000
+    }
+  ],
+
+  "postBalanceCharge": [
+    {
+      "userId": 0,
+      "amount": 10000
+    }
+  ],
+
+  "getConcertsSeats": [
+    {
+      "seatId": 0,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 1,
+      "scheduleId": 0,
+      "price": 99000
+    }
+  ],
+
+  "getConcertsSchedules": [
+    {
+      "scheduleId": 0,
+      "concertId": 0,
+      "scheduleDate": "2024-08-30T02:12:39.2657",
+      "totalSeat": 50
+    }
+  ],
+  "postReservationSeats": [
+    {
+      "reservationId": 1003772,
+      "concertTitle:": "발라드 황제 이석범 콘서트",
+      "userId": 2,
+      "seatIdList": [1, 15],
+      "totalPrice": 198000,
+      "reservationExpiry": "2024-08-30T01:12:39.857004"
+    }
+  ],
+
+  "postReservationsPayments": [
+    {
+      "paymentId": 0,
+      "paymentTime": "2024-08-30T02:12:39.2650"
+    }
   ]
 }
