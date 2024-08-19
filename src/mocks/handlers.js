@@ -11,7 +11,7 @@ const getTokenHandler = http.get("/api/token", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.getToken,
+    response: mockData.getToken,
   });
 });
 
@@ -24,7 +24,7 @@ const postTokenHandler = http.post("/api/token", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.postToken,
+    response: mockData.postToken,
   });
 });
 
@@ -37,7 +37,7 @@ const getBalanceHandler = http.get("/api/balance", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.getBalance,
+    response: { balance: mockData.getBalance },
   });
 });
 
@@ -49,7 +49,7 @@ const putBalanceChargeHandler = http.put("/api/balance/charge", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.postBalanceCharge,
+    response: mockData.postBalanceCharge,
   });
 });
 
@@ -61,7 +61,7 @@ const getConcertsHandler = http.get("/api/concerts", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.concerts,
+    response: { concerts: mockData.concerts },
   });
 });
 
@@ -74,7 +74,7 @@ const getConcertsSeatsHandler = http.get("/api/concerts/seats", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.getConcertsSeats,
+    response: mockData.getConcertsSeats,
   });
 });
 
@@ -87,7 +87,7 @@ const getConcertsSchedulesHandler = http.get("/api/concerts/chedules", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    concerts: mockData.getConcertsSchedules,
+    response: mockData.getConcertsSchedules,
   });
 });
 
@@ -102,7 +102,7 @@ const postReservationsSeatsHandler = http.post(
       headers: {
         "Content-Type": "application/json",
       },
-      concerts: mockData.postReservationSeats,
+      response: mockData.postReservationSeats,
     });
   }
 );
@@ -118,7 +118,7 @@ const postReservationsPaymentsHandler = http.post(
       headers: {
         "Content-Type": "application/json",
       },
-      concerts: mockData.postReservationsPayments,
+      response: mockData.postReservationsPayments,
     });
   }
 );
