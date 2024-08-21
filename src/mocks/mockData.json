@@ -23996,9 +23996,58 @@
 
   "getConcertsSeats": [
     {
-      "seatId": 0,
+      "seatId": 1,
       "seatStatus": "AVAILABLE",
       "seatNumber": 1,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 6,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 6,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 7,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 7,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 19,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 19,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 23,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 23,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 32,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 32,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 41,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 23,
+      "scheduleId": 0,
+      "price": 99000
+    },
+    {
+      "seatId": 46,
+      "seatStatus": "AVAILABLE",
+      "seatNumber": 46,
       "scheduleId": 0,
       "price": 99000
     }

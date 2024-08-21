@@ -74,7 +74,8 @@ const getConcertsSeatsHandler = http.get("/api/concerts/seats", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    response: mockData.getConcertsSeats,
+
+    response: { seats: mockData.getConcertsSeats },
   });
 });
 
