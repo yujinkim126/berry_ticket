@@ -1,9 +1,8 @@
-# Dillinger
-## 콘서트 예약 서비스 구현
+# 콘서트 예약 서비스 구현
 
 ### 참여자
-- **김유진**: [GitHub Profile](https://github.com/yujinkim126)
-- **박희연**: [GitHub Profile](https://github.com/Park-Heeyeon)
+- **김유진**: [GitHub](https://github.com/yujinkim126)
+- **박희연**: [GitHub](https://github.com/Park-Heeyeon)
 
 ### 목표
 1. API 규격을 토대로 프론트엔드 시나리오 작성
