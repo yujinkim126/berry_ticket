@@ -81,14 +81,14 @@ const getConcertsSeatsHandler = http.get("/api/concerts/seats", () => {
 
 // 예약 가능 날짜 조회 API
 // param {userId, contentId}
-const getConcertsSchedulesHandler = http.get("/api/concerts/chedules", () => {
+const getConcertsSchedulesHandler = http.get("/api/concerts/schedules", () => {
   return HttpResponse.json({
     code: "OK",
     status: 200,
     headers: {
       "Content-Type": "application/json",
     },
-    response: mockData.getConcertsSchedules,
+    response: { schedules: mockData.getConcertsSchedules },
   });
 });
 
