@@ -1,17 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Components/Home";
-import Seat from "./Components/reservation/Seat";
+import { Outlet } from "react-router-dom";
+import Header from "@components/Header";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/reservation" element={<Seat />} />
-        </Routes>
-      </Router>
-    </>
+    <div>
+      <Header />
+      <Outlet />
+    </div>
   );
 }
 

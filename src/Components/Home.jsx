@@ -1,5 +1,3 @@
-import { Button } from "@ui/button";
-
 const Home = () => {
   const testAxios = () => {
     fetch("/api/concerts")
@@ -10,7 +8,6 @@ const Home = () => {
   };
   return (
     <div className="HomePage">
-      <Button>Click me</Button>
       {/** 이미지 배너 */}
       <div className="relative font-sans before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
         <img
