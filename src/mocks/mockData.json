@@ -24056,8 +24056,8 @@
   "getConcertsSchedules": [
     {
       "scheduleId": 0,
-      "concertId": 0,
-      "scheduleDate": "2024-08-30T02:12:39.2657",
+      "contentId": 0,
+      "scheduleDate": "2024-08-30T18:00:00",
       "totalSeat": 50
     }
   ],
