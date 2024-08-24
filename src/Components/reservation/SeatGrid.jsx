@@ -1,9 +1,23 @@
-import React from "react";
-
 // 좌석 그리드 컴포넌트
-const SeatGrid = ({ totalSeat, selectedSeats, availableSeats, onSeatClick }) => {
-  const rows = generateRows(totalSeat); // 동적으로 행을 생성
-  const seatsPerRow = Math.ceil(totalSeat / rows.length);
+const SeatGrid = ({
+  totalSeat,
+  selectedSeats,
+  availableSeats,
+  onSeatClick,
+}) => {
+  const seatsPerRow = 10; // 각 행에 표시할 좌석 수
+  const numRows = Math.ceil(totalSeat / seatsPerRow); // 총 좌석 수에 따라 행의 수를 결정
+
+  // 행 이름을 생성하는 유틸리티 함수
+  const generateRows = () => {
+    const rows = [];
+    for (let i = 0; i < numRows; i++) {
+      rows.push(String.fromCharCode(65 + i)); // ASCII 코드를 이용해 A, B, C,... 등의 행 이름 생성
+    }
+    return rows;
+  };
+
+  const rows = generateRows();
 
   const renderSeats = () => {
     const seats = [];
@@ -25,7 +39,8 @@ const SeatGrid = ({ totalSeat, selectedSeats, availableSeats, onSeatClick }) => 
                 (seat) => seat.seatId === seatId
               );
 
-              const isAvailable = seatInfo && seatInfo.seatStatus === "AVAILABLE";
+              const isAvailable =
+                seatInfo && seatInfo.seatStatus === "AVAILABLE";
               const isSelected = selectedSeats.some(
                 (seat) => seat.seatId === seatId
               );
@@ -54,18 +69,6 @@ const SeatGrid = ({ totalSeat, selectedSeats, availableSeats, onSeatClick }) => 
   };
 
   return <div className="flex flex-col">{renderSeats()}</div>;
-};
-
-// 행 이름을 생성하는 유틸리티 함수
-const generateRows = (totalSeat) => {
-  const rows = [];
-  const numRows = Math.ceil(Math.sqrt(totalSeat)); // 총 좌석 수에 따라 행의 수를 동적으로 결정
-
-  for (let i = 0; i < numRows; i++) {
-    rows.push(String.fromCharCode(65 + i)); // ASCII 코드를 이용해 A, B, C,... 등의 행 이름 생성
-  }
-
-  return rows;
 };
 
 export default SeatGrid;
