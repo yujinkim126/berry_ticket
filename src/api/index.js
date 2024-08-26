@@ -5,6 +5,10 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_REACT_API_URL,
 });
 
+const openApi = axios.create({
+  baseURL: import.meta.env.VITE_REACT_SERVER_URL,
+});
+
 // 유저 대기열 토큰 조회 API
 export const getToken = async (userId) => {
   const response = await api.get("/token", {
@@ -34,11 +38,18 @@ export const putBalanceCharge = async (userId, amount) => {
 };
 
 // 콘서트 조회 API
-export const getConcerts = async (userId, page, size) => {
-  const response = await api.get("/concerts", {
-    params: { userId, page, size },
+export const getConcerts = async () => {
+  const response = await openApi.get("/api/prodlist", {
+    params: {
+      commCode: "",
+      sortType: "REAL_RANK",
+      perfGenreCode: "GENRE_CON_ALL",
+      perfThemeCode: "",
+      filterCode: "FILTER_ALL",
+      v: 1,
+    },
   });
-  return response.data;
+  return response;
 };
 
 // 해당 날짜 예약 가능 좌석 조회 API
