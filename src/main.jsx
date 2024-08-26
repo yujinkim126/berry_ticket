@@ -5,6 +5,7 @@ import App from "./App";
 import Home from "@components/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ReservationPage from "./Components/reservation/ReservationPage";
 
 async function enableMocking() {
   // 일반적인 경우
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/reservation",
-        // element: <ReservationPage />,
+        element: <ReservationPage />,
       },
     ],
   },

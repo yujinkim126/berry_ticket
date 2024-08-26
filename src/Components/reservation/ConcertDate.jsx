@@ -119,9 +119,7 @@ const ConCertDate = (props) => {
         <div className="concertDate">
           <Calendar
             availableDates={availableDates}
-            selectedDate={
-              selectedDateTime.date ? new Date(selectedDateTime.date) : null
-            }
+            selectedDate={selectedDateTime}
             onDateSelect={handleDateSelect}
           />
         </div>
@@ -132,19 +130,24 @@ const ConCertDate = (props) => {
             <div>
               <h2 className="mb-2">공연 날짜: {selectedDateTime.date}</h2>
               <ul className="list-disc pl-1">
-                {availableTimes.map((time, index) => (
-                  <li
-                    key={index}
-                    className={`py-2 list-none border-b border-gray-200 last:border-b-0 cursor-pointer ${
-                      selectedDateTime.time === time
-                        ? "text-gray-800 font-bold"
-                        : "text-gray-600"
-                    }`}
-                    onClick={() => handleTimeSelect(time)}
-                  >
-                    {time}
-                  </li>
-                ))}
+                {availableTimes.map((time, index) => {
+                  // 시간 문자열에서 소수점을 떼어내고 "HH:mm:ss" 형식으로 변환
+                  const formattedTime = time.split(".")[0];
+
+                  return (
+                    <li
+                      key={index}
+                      className={`py-2 list-none border-b border-gray-200 last:border-b-0 cursor-pointer ${
+                        selectedDateTime.time === time
+                          ? "text-gray-800 font-bold"
+                          : "text-gray-600"
+                      }`}
+                      onClick={() => handleTimeSelect(time)}
+                    >
+                      {formattedTime}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}

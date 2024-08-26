@@ -1,8 +1,7 @@
 import { DayPicker } from "react-day-picker";
-
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Calendar({
   className,
@@ -15,15 +14,19 @@ function Calendar({
   const availableDatesObjects = availableDates.map((date) =>
     new Date(date).toDateString()
   );
+  const [userSelectDate, setUserSelectDate] = useState(null);
 
   useEffect(() => {
-    console.log("kyj selectedDate", selectedDate);
+    if (selectedDate && selectedDate.date) {
+      console.log("kyj selectedDate", selectedDate.date);
+      setUserSelectDate(new Date(selectedDate.date));
+    }
   }, [selectedDate]);
 
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      selected={selectedDate}
+      selected={userSelectDate}
       onDayClick={(date) => {
         // 클릭된 날짜를 Date 객체로 변환
         const clickedDate = date.toDateString();
@@ -38,7 +41,7 @@ function Calendar({
         available: availableDates.map((date) => new Date(date)), // 예약 가능한 날짜를 강조
       }}
       modifiersClassNames={{
-        available: "bg-blue-50 text-slate-900", // 예약 가능한 날짜 스타일
+        available: "bg-gray-200 text-slate-900", // 예약 가능한 날짜 스타일
       }}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
@@ -63,7 +66,7 @@ function Calendar({
           "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
         ),
         day_selected:
-          "bg-blue-200 text-slate-50 hover:bg-blue-200 hover:text-slate-50 focus:bg-blue-200 focus:text-slate-50 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50 dark:hover:text-slate-900 dark:focus:bg-slate-50 dark:focus:text-slate-900",
+          "bg-blue-200 text-slate-900 hover:bg-blue-200 hover:text-slate-900 font-bold focus:bg-blue-200 focus:text-slate-900 font-bold dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50 dark:hover:text-slate-900 dark:focus:bg-slate-50 dark:focus:text-slate-900 font-bold",
         day_today: "text-blue-600 dark:bg-slate-800 dark:text-slate-50",
         day_outside:
           "day-outside text-slate-500 opacity-50 aria-selected:bg-slate-100/50 aria-selected:text-slate-500 aria-selected:opacity-30 dark:text-slate-400 dark:aria-selected:bg-slate-800/50 dark:aria-selected:text-slate-400",
