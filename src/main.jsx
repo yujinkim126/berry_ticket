@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Home from "@components/Home";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 async function enableMocking() {
   // 일반적인 경우
@@ -29,12 +31,21 @@ const router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
+      {
+        path: "/reservation",
+        // element: <ReservationPage />,
+      },
     ],
   },
 ]);
 
+const queryClient = new QueryClient();
+
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 });
