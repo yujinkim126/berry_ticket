@@ -2,7 +2,7 @@ const ConcertCard = ({ concert }) => {
   return (
     <div className="border rounded-md overflow-hidden max-md:max-w-[300px] transform transition duration-500 hover:scale-110">
       <img
-        src={"../public/img/poster1.jpeg"}
+        src={import.meta.env.VITE_REACT_IMAGE_URL + concert.posterImg}
         className="w-full h-50 object-contain object-top bg-gray-200"
       />
       <div className="p-4">
