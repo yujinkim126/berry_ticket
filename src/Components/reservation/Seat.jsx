@@ -6,7 +6,6 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [availableSeats, setAvailableSeats] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [selectedSeatPosition, setSelectedSeatPosition] = useState(null); // 선택된 좌석 위치
 
   useEffect(() => {
     const fetchSeats = async () => {
@@ -47,18 +46,6 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
         alert("선택할 수 있는 좌석 수를 초과했습니다.");
       }
     }
-    // 좌석 클릭 시 좌석 위치 계산
-    const seatPosition = getSeatPosition(seat.seatId);
-    setSelectedSeatPosition(seatPosition);
-  };
-
-  const getSeatPosition = (seatId) => {
-    const rowIndex = Math.floor((seatId - 1) / 10); // 0부터 시작하는 행 인덱스
-    const columnIndex = (seatId - 1) % 10; // 0부터 시작하는 열 인덱스
-    const row = String.fromCharCode(65 + rowIndex); // ASCII 코드로 행 이름 생성
-    const seatInRow = columnIndex + 1; // 좌석 번호 계산
-
-    return { row, seatInRow };
   };
 
   const renderSelectedSeats = () => {
@@ -77,7 +64,7 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
           className="cursor-pointer"
           onClick={() => handleSeatClick(seat)}
         >
-          {row}열 {seatInRow}번 - {seat.price.toLocaleString()}원
+          {row}열 {seatInRow}번
         </li>
       );
     });
@@ -105,16 +92,7 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
             renderSelectedSeats()
           )}
         </ul>
-        <p className="font-bold mt-4">
-          총 가격: {totalPrice.toLocaleString()}원
-        </p>
-
-        {selectedSeatPosition && (
-          <p className="font-bold mt-4">
-            선택된 좌석 위치: {selectedSeatPosition.row}
-            {selectedSeatPosition.seatInRow}번
-          </p>
-        )}
+        <p className="font-bold mt-4">금액: {totalPrice.toLocaleString()}원</p>
 
         <div>
           <button
