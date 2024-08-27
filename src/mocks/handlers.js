@@ -37,7 +37,7 @@ const getBalanceHandler = http.get("/api/balance", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    response: { balance: mockData.getBalance },
+    response: mockData.getBalance,
   });
 });
 
@@ -54,14 +54,40 @@ const putBalanceChargeHandler = http.put("/api/balance/charge", () => {
 });
 
 // 콘서트 조회 API 핸들러
-const getConcertsHandler = http.get("/api/concerts", () => {
+const getConcertsHandler = http.get("/api/concerts", ({ request }) => {
+  const parsedUrl = new URL(request.url);
+  const prodId = Number(parsedUrl.searchParams.get("prodId")) || null;
+
+  const filteredConcert = mockData.concerts.filter((item) => {
+    return item.prodId === prodId;
+  });
+
   return HttpResponse.json({
     code: "OK",
     status: 200,
     headers: {
       "Content-Type": "application/json",
     },
-    response: { concerts: mockData.concerts },
+    response: !prodId ? mockData.concerts : filteredConcert,
+  });
+});
+
+// 콘서트 상세 조회 API 핸들러
+const getConcertDetailHandler = http.get("api/concerts", ({ request }) => {
+  const parsedUrl = new URL(request.url);
+  const prodId = Number(parsedUrl.searchParams.get("prodId"));
+
+  const filteredConcert = mockData.concerts.filter((item) => {
+    return item.prodId === prodId;
+  });
+
+  return HttpResponse.json({
+    code: "OK",
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    response: filteredConcert,
   });
 });
 
@@ -75,7 +101,7 @@ const getConcertsSeatsHandler = http.get("/api/concerts/seats", () => {
       "Content-Type": "application/json",
     },
 
-    response: { seats: mockData.getConcertsSeats },
+    response: mockData.getConcertsSeats,
   });
 });
 
@@ -88,7 +114,7 @@ const getConcertsSchedulesHandler = http.get("/api/concerts/schedules", () => {
     headers: {
       "Content-Type": "application/json",
     },
-    response: { schedules: mockData.getConcertsSchedules },
+    response: mockData.getConcertsSchedules,
   });
 });
 
@@ -127,6 +153,7 @@ const postReservationsPaymentsHandler = http.post(
 // 핸들러를 배열로 내보냅니다
 export const handlers = [
   getConcertsHandler,
+  getConcertDetailHandler,
   getConcertsSeatsHandler,
   getConcertsSchedulesHandler,
   postReservationsSeatsHandler,

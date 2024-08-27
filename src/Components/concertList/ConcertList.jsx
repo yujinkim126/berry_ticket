@@ -1,15 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { getConcerts } from "@/api";
 import ConcertCard from "./ConcertCard";
 import Skeleton from "./ConcertListSkeleton";
+import { useConcertQuery } from "@/hooks/useConcertQuery";
 
 const ConcertList = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: ["concerts"],
-    queryFn: getConcerts,
-
-    select: (data) => data.data.data,
-  });
+  const { data, isLoading } = useConcertQuery();
 
   if (isLoading)
     return (
@@ -25,7 +19,7 @@ const ConcertList = () => {
           <p className="text-gray-600 text-2xl font-bold">
             현재 예매 가능한 공연은{" "}
             <span className="text-blue-800 font-extrabold">
-              {/* {data.length}개 */}
+              {data.length}개
             </span>{" "}
             입니다.
           </p>

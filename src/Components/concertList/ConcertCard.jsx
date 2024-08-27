@@ -6,11 +6,9 @@ const ConcertCard = ({ concert }) => {
         className="w-full h-50 object-contain object-top bg-gray-200"
       />
       <div className="p-4">
-        <h4 className="text-gray-800 text-base font-bold max-h-[30px] h-2">
-          {concert.titleNm}
+        <h4 className="text-gray-800 text-base font-bold min-h-[48px] max-h-[100px]">
+          {concert.title}
         </h4>
-        {/* <p className="text-gray-600 text-xs mt-5 h-8">{concert.characters}</p> */}
-
         <div className="mt-4">
           <p className="text-gray-900 text-base leading-relaxed">
             {concert.placeNm}
