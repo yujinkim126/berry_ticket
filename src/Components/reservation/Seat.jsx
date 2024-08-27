@@ -25,6 +25,13 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
 
     postReservationsSeats(reqVo).then((res) => {
       console.log(res);
+      const testAmount = 150000;
+      if (testAmount < res.response[0]?.totalPrice) {
+        openModal("예매 실패", "예매 금액이 부족합니다.");
+      } else {
+        openModal("예매 성공", "예매가 완료되었습니다.");
+      }
+      console.log("kyj::", res.response[0].totalPrice);
     });
   };
 
