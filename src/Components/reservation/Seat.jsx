@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import SeatGrid from "./SeatGrid";
 import { getConcertsSeats, postReservationsSeats } from "../../api";
-import useModalStore from "@/store/useModalStore";
 
 const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [availableSeats, setAvailableSeats] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const openModal = useModalStore((state) => state.openModal);
 
   useEffect(() => {
     const fetchSeats = async () => {
@@ -26,13 +24,7 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
     };
 
     postReservationsSeats(reqVo).then((res) => {
-      const testAmount = 150000;
-      if (testAmount < res.response[0]?.totalPrice) {
-        openModal("예매 실패", "예매 금액이 부족합니다.");
-      } else {
-        openModal("예매 성공", "예매가 완료되었습니다.");
-      }
-      console.log("kyj::", res.response[0].totalPrice);
+      console.log(res);
     });
   };
 
