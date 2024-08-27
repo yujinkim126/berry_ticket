@@ -1,11 +1,13 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import "../public/css/custom_skeleton.css";
 import App from "./App";
 import Home from "@components/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ReservationPage from "./Components/reservation/ReservationPage";
+import ConcertDetail from "./components/concertList/ConcertDetail";
 
 async function enableMocking() {
   // 일반적인 경우
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "/concert/:concertId",
+        element: <ConcertDetail />,
       },
       {
         path: "/reservation",
