@@ -1,5 +1,5 @@
 // 요청이 들어왔을 때 임의의 응답을 해주는 핸들러가 정의되어 있는 파일입니다.
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
 import mockData from "./mockData.json";
 
 // 유저 대기열 토큰 조회 API
@@ -54,13 +54,9 @@ const putBalanceChargeHandler = http.put("/api/balance/charge", () => {
 });
 
 // 콘서트 조회 API 핸들러
-const getConcertsHandler = http.get("/api/concerts", ({ request }) => {
-  const parsedUrl = new URL(request.url);
-  const prodId = Number(parsedUrl.searchParams.get("prodId")) || null;
-
-  const filteredConcert = mockData.concerts.filter((item) => {
-    return item.prodId === prodId;
-  });
+const getConcertsHandler = http.get("/api/concerts", async () => {
+  // 스켈레톤 응답값 지연 테스트
+  await delay(3000);
 
   return HttpResponse.json({
     code: "OK",
@@ -68,19 +64,20 @@ const getConcertsHandler = http.get("/api/concerts", ({ request }) => {
     headers: {
       "Content-Type": "application/json",
     },
-    response: !prodId ? mockData.concerts : filteredConcert,
+    response: mockData.concerts,
   });
 });
 
 // 콘서트 상세 조회 API 핸들러
-const getConcertDetailHandler = http.get("api/concerts", ({ request }) => {
+const getConcertDetailHandler = http.get("/api/concert", ({ request }) => {
+  console.log("kyj request:", request);
   const parsedUrl = new URL(request.url);
   const prodId = Number(parsedUrl.searchParams.get("prodId"));
-
+  console.log("kyj prodId", prodId);
   const filteredConcert = mockData.concerts.filter((item) => {
     return item.prodId === prodId;
   });
-
+  console.log("kyj filteredConcert", filteredConcert);
   return HttpResponse.json({
     code: "OK",
     status: 200,

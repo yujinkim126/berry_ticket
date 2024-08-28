@@ -41,9 +41,10 @@ export const getConcerts = async () => {
 
 // 콘서트 상세 조회 API
 export const getConcertDetail = async (prodId) => {
-  const response = await api.get("/concerts", {
+  const response = await api.get("/concert", {
     params: { prodId },
   });
+  console.log("kyj response", response);
   return response.data;
 };
 
