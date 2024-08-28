@@ -6,6 +6,7 @@ export const useConcertQuery = () => {
     queryKey: ["concerts"],
     queryFn: getConcerts,
     select: (data) => data.response,
+    staleTime: Infinity,
   });
 };
 

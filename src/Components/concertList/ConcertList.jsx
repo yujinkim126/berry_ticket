@@ -5,12 +5,13 @@ import { useConcertQuery } from "@/hooks/useConcertQuery";
 const ConcertList = () => {
   const { data, isLoading } = useConcertQuery();
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div>
         <Skeleton />
       </div>
     );
+  }
 
   return (
     <div className="font-[sans-serif] my-4">

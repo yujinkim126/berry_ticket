@@ -8,12 +8,13 @@ import { useParams } from "react-router-dom";
 import { Button } from "@ui/button";
 import QueuePopup from "../popup/QueuePopup";
 import usePopupStore from "../store/usePopupStore";
+// import ConcertListSkeleton from "./ConcertListSkeleton";
 
 const ConcertDetail = () => {
   const concertParam = useParams();
   const concertId = concertParam.concertId;
 
-  const { data: concert } = useConcertDetailQuery(concertId);
+  const { data: concert, isFetching } = useConcertDetailQuery(concertId);
   const concertDetail = concert?.[0] || {};
 
   const { openPopup } = usePopupStore();
@@ -29,6 +30,10 @@ const ConcertDetail = () => {
     openPopup(<QueuePopup />);
     // }
   };
+
+  if (isFetching) {
+    console.log("희연 패칭중 !!");
+  }
 
   return (
     <div className="ConcertInfoPage px-4 md:px-0">
