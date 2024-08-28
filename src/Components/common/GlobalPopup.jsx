@@ -4,8 +4,6 @@ import { Dialog, DialogContent } from "../ui/dialog";
 const GlobalPopup = () => {
   const { isOpen, content, closePopup } = usePopupStore();
 
-  console.log("희연 content", content);
-
   if (!isOpen) return null;
 
   return (
