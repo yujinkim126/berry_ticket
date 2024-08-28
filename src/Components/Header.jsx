@@ -7,13 +7,15 @@ const Header = () => {
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
             <img
-              src="../public/vite.svg"
-              className="mr-3 h-6 sm:h-9"
-              alt="Logo"
+              src="../public/img/iconLogo.png"
+              className="h-6 sm:h-9"
+              alt="LogoIcon"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              VITE + REACT
-            </span>
+            <img
+              src="../public/img/textLogo.png"
+              className="mr-3 h-6 sm:h-9"
+              alt="LogoText"
+            />
           </Link>
           <div className="flex items-center lg:order-2">
             <a
