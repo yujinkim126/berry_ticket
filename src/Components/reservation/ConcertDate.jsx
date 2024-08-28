@@ -56,22 +56,22 @@ const ConCertDate = (props) => {
 
   const getAvailableSchedules = () => {
     getConcertsSchedules(contentId).then((data) => {
-      const { schedules } = data?.response || [];
-      if (schedules && schedules.length > 0) {
+      const { response } = data || [];
+      if (response && response.length > 0) {
         // 전체 공연 정보를 저장
-        setAvailableSchedules(schedules);
+        setAvailableSchedules(response);
 
         // 예약 가능한 날짜를 캘린더에 이용
         const dates = [
           ...new Set(
-            schedules.map((schedule) => schedule.scheduleDate.split("T")[0])
+            response.map((schedule) => schedule.scheduleDate.split("T")[0])
           ),
         ];
         setAvailableDates(dates);
 
         // 초기 시간 설정 (선택된 날짜의 시간을 필터링)
         if (selectedDateTime.date) {
-          const timesForDate = schedules
+          const timesForDate = response
             .filter((schedule) =>
               schedule.scheduleDate.startsWith(selectedDateTime.date)
             )

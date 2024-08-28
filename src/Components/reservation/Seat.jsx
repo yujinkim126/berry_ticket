@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import SeatGrid from "./SeatGrid";
 import { getConcertsSeats, postReservationsSeats } from "../../api";
+import useModalStore from "../store/useModalStore";
 
 const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [availableSeats, setAvailableSeats] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const { openModal } = useModalStore();
 
   useEffect(() => {
     const fetchSeats = async () => {
       const res = await getConcertsSeats(userId, scheduleId);
-      setAvailableSeats(res.response.seats);
+      setAvailableSeats(res.response);
     };
     fetchSeats();
   }, [userId, scheduleId]);
