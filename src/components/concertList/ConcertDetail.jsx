@@ -8,6 +8,10 @@ import { useParams } from "react-router-dom";
 import { Button } from "@ui/button";
 import QueuePopup from "../popup/QueuePopup";
 import usePopupStore from "../store/usePopupStore";
+import useLoginStateStore from "../store/useLoginStateStore";
+import LoginPopup from "../popup/LoginPopup";
+import ReservationPage from "../reservation/ReservationPage";
+import { useState } from "react";
 
 const ConcertDetail = () => {
   const concertParam = useParams();
@@ -16,18 +20,26 @@ const ConcertDetail = () => {
   const { data: concert, isFetching } = useConcertDetailQuery(concertId);
   const concertDetail = concert?.[0] || {};
 
+  const { isLogin } = useLoginStateStore();
   const { openPopup } = usePopupStore();
 
+  // api 나오기 전 대기열 판단
+  const [waiting, setWaiting] = useState(false);
+
   const onClickReserveBtn = () => {
+    /**
+     * 로그인을 하지 않은 사용자가 예매하기 버튼을 클릭한 경우
+     * 로그인 팝업 표출
+     */
+    if (!isLogin) return openPopup(<LoginPopup />);
+
     /**
      * 예매하기 버튼 클릭 시, 대기열을 조회한다.
      * 조회 시, 대기열이 있는 경우 대기열 알림 팝업을 표출하고
      * 없는 경우에는 일정을 선택할 수 있는 팝업을 표출한다.
      */
-    // 대기열이 없는 경우
-    // else{
-    openPopup(<QueuePopup />);
-    // }
+    if (waiting) return openPopup(<QueuePopup />);
+    else return openPopup(<ReservationPage />);
   };
 
   if (isFetching) {
