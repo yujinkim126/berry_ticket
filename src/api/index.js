@@ -5,6 +5,12 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_REACT_API_URL,
 });
 
+// 로그인 API
+export const postUserId = async (userId) => {
+  const response = await api.post("/login", { userId });
+  return response.data;
+};
+
 // 유저 대기열 토큰 조회 API
 export const getToken = async (userId) => {
   const response = await api.get("/token", {

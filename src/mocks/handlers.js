@@ -2,6 +2,18 @@
 import { http, HttpResponse, delay } from "msw";
 import mockData from "./mockData.json";
 
+// 로그인 API
+// param {userId}
+const postUserIdHandler = http.post("/api/login", () => {
+  return HttpResponse.json({
+    code: "OK",
+    statue: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+});
+
 // 유저 대기열 토큰 조회 API
 // param {userId}
 const getTokenHandler = http.get("/api/token", () => {
@@ -64,7 +76,7 @@ const getConcertsHandler = http.get("/api/concerts", async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    response: mockData.concerts,
+    response: mockData.getConcerts,
   });
 });
 
@@ -73,7 +85,7 @@ const getConcertDetailHandler = http.get("/api/concert", ({ request }) => {
   const parsedUrl = new URL(request.url);
   const prodId = Number(parsedUrl.searchParams.get("prodId"));
 
-  const filteredConcert = mockData.concerts.filter((item) => {
+  const filteredConcert = mockData.getConcerts.filter((item) => {
     return item.prodId === prodId;
   });
 
@@ -163,6 +175,7 @@ const getCurrentReservationHandler = http.get(
 
 // 핸들러를 배열로 내보냅니다
 export const handlers = [
+  postUserIdHandler,
   getConcertsHandler,
   getConcertDetailHandler,
   getConcertsSeatsHandler,
