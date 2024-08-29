@@ -27,7 +27,7 @@ const GlobalModal = () => {
         </div>
         <DialogFooter>
           <DialogClose className="btn" onClick={closeModal}>
-            Close
+            확인
           </DialogClose>
         </DialogFooter>
       </DialogContent>
