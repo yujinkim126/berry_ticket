@@ -3,7 +3,13 @@ import SeatGrid from "./SeatGrid";
 import { getConcertsSeats, postReservationsSeats } from "../../api";
 import useModalStore from "../store/useModalStore";
 
-const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
+const Seat = ({
+  contentId,
+  totalSeat,
+  seatIdList = [],
+  userId = 2,
+  scheduleId,
+}) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [availableSeats, setAvailableSeats] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -13,9 +19,23 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
     const fetchSeats = async () => {
       const res = await getConcertsSeats(userId, scheduleId);
       setAvailableSeats(res.response);
+
+      // seatIdList를 이용해 초기 선택된 좌석 설정
+      const initialSelectedSeats = res.response.filter((seat) =>
+        seatIdList.includes(seat.seatId)
+      );
+
+      setSelectedSeats(initialSelectedSeats);
+
+      // 선점된 좌석이 있다면(재진입) 총 금액 계산
+      const initialTotalPrice = initialSelectedSeats.reduce(
+        (sum, seat) => sum + seat.price,
+        0
+      );
+      setTotalPrice(initialTotalPrice);
     };
     fetchSeats();
-  }, [userId, scheduleId]);
+  }, []);
 
   const handleReservation = () => {
     const reqVo = {
@@ -26,14 +46,12 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
     };
 
     postReservationsSeats(reqVo).then((res) => {
-      console.log(res);
       const testAmount = 150000;
       if (testAmount < res.response[0]?.totalPrice) {
         openModal("예매 실패", "예매 금액이 부족합니다.");
       } else {
         openModal("예매 성공", "예매가 완료되었습니다.");
       }
-      console.log("kyj::", res.response[0].totalPrice);
     });
   };
 
@@ -59,13 +77,17 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
 
   const renderSelectedSeats = () => {
     return selectedSeats.map((seat) => {
-      const seatInfo = availableSeats.find(
-        (availableSeat) => availableSeat.seatId === seat.seatId
-      );
-      const seatNumber = seatInfo?.seatNumber || seat.seatId;
-      const seatInRow =
-        seatNumber % Math.ceil(totalSeat / availableSeats.length) || 1;
-      const row = generateRow(seatNumber);
+      // 한 줄에 10 좌석으로 설정
+      const seatsPerRow = 10;
+
+      // 열을 계산 (0번째 인덱스를 고려하기 위해 -1을 해줌)
+      const rowNumber = Math.floor((seat.seatNumber - 1) / seatsPerRow);
+
+      // 열에 대응하는 알파벳을 계산
+      const rowLetter = String.fromCharCode(65 + rowNumber); // 65는 'A'의 아스키 코드
+
+      // 좌석 번호 계산 (1부터 시작하도록 +1)
+      const seatPosition = ((seat.seatNumber - 1) % seatsPerRow) + 1;
 
       return (
         <li
@@ -73,7 +95,7 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
           className="cursor-pointer"
           onClick={() => handleSeatClick(seat)}
         >
-          {row}열 {seatInRow}번
+          {rowLetter}열 {seatPosition}번
         </li>
       );
     });
@@ -122,9 +144,9 @@ const Seat = ({ contentId, totalSeat, userId = 2, scheduleId }) => {
 };
 
 // 좌석 번호에 따라 행(row)을 생성하는 함수
-const generateRow = (seatNumber) => {
-  const rowIndex = Math.floor(seatNumber / 10);
-  return String.fromCharCode(65 + rowIndex);
-};
+// const generateRow = (seatNumber) => {
+//   const rowIndex = Math.floor((seatNumber - 1) / 10); // 수정된 로직: 1을 빼서 정확한 행 계산
+//   return String.fromCharCode(65 + rowIndex);
+// };
 
 export default Seat;

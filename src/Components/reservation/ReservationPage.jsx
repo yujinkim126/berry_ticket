@@ -2,14 +2,13 @@ import { useState } from "react";
 import ConCertDate from "./ConCertDate";
 import Seat from "./Seat";
 
-const ReservationPage = () => {
-  const [selectTab, setSelectTab] = useState(0); // 현재 탭 상태
-  const [selectSchedule, setSelectSchedule] = useState(null); // 선택된 스케줄 데이터
+const ReservationPage = ({ initialTab = 0, initialData = null }) => {
+  const [selectTab, setSelectTab] = useState(initialTab); // 탭 (0: 일정 1: 좌석)
+  const [concertData, setconcertData] = useState(initialData); // 선택된 스케줄 데이터
 
   const handleTabChange = (tabIndex, data) => {
-    console.log("kyj change!", tabIndex, data);
     if (tabIndex === 1 && data) {
-      setSelectSchedule(data);
+      setconcertData(data);
     }
     setSelectTab(tabIndex);
   };
@@ -20,9 +19,10 @@ const ReservationPage = () => {
         <ConCertDate handleTabChange={handleTabChange} />
       ) : (
         <Seat
-          totalSeat={selectSchedule?.totalSeat}
-          scheduleId={selectSchedule?.scheduleId}
-          contentId={selectSchedule?.contentId}
+          totalSeat={concertData?.totalSeat}
+          seatIdList={concertData?.seatIdList}
+          scheduleId={concertData?.scheduleId}
+          contentId={concertData?.contentId}
           handleTabChange={handleTabChange}
         />
       )}

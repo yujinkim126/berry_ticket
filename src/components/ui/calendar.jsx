@@ -18,7 +18,6 @@ function Calendar({
 
   useEffect(() => {
     if (selectedDate && selectedDate.date) {
-      console.log("kyj selectedDate", selectedDate.date);
       setUserSelectDate(new Date(selectedDate.date));
     }
   }, [selectedDate]);

@@ -30,7 +30,7 @@ const ConCertDate = (props) => {
 
     // 선택된 날짜와 시간을 초기화
     setSelectedDateTime({ date: formattedDate, time: null, scheduleId: null });
-    console.log("Formatted Date:", formattedDate);
+
     // 선택된 날짜의 시간 정보를 필터링
     const timesForDate = availableSchedules
       .filter((schedule) => schedule.scheduleDate.startsWith(formattedDate))

@@ -70,14 +70,13 @@ const getConcertsHandler = http.get("/api/concerts", async () => {
 
 // 콘서트 상세 조회 API 핸들러
 const getConcertDetailHandler = http.get("/api/concert", ({ request }) => {
-  console.log("kyj request:", request);
   const parsedUrl = new URL(request.url);
   const prodId = Number(parsedUrl.searchParams.get("prodId"));
-  console.log("kyj prodId", prodId);
+
   const filteredConcert = mockData.concerts.filter((item) => {
     return item.prodId === prodId;
   });
-  console.log("kyj filteredConcert", filteredConcert);
+
   return HttpResponse.json({
     code: "OK",
     status: 200,
@@ -147,6 +146,21 @@ const postReservationsPaymentsHandler = http.post(
   }
 );
 
+// 현재 예약중인 콘서트 조회 API
+const getCurrentReservationHandler = http.get(
+  "/api/current/reservation",
+  () => {
+    return HttpResponse.json({
+      code: "OK",
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      response: mockData.getCurrentReservation,
+    });
+  }
+);
+
 // 핸들러를 배열로 내보냅니다
 export const handlers = [
   getConcertsHandler,
@@ -159,4 +173,5 @@ export const handlers = [
   postTokenHandler,
   getBalanceHandler,
   putBalanceChargeHandler,
+  getCurrentReservationHandler,
 ];

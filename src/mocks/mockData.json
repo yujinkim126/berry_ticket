@@ -4321,7 +4321,7 @@
       "reservationId": 1003772,
       "concertTitle:": "발라드 황제 이석범 콘서트",
       "userId": 2,
-      "seatIdList": [1, 15],
+      "seatIdList": [19, 32],
       "totalPrice": 198000,
       "reservationExpiry": "2024-08-30T01:12:39.857004"
     }
@@ -4331,6 +4331,20 @@
     {
       "paymentId": 0,
       "paymentTime": "2024-08-30T02:12:39.2650"
+    }
+  ],
+  "getCurrentReservation": [
+    {
+      "prodId": 210224,
+      "posterImg": "/resource/image/upload/product/2024/08/2024080611341375e56cb2-8aa9-47aa-aea7-7ac8b6949e22.jpg",
+      "title": "2024 CNBLUE LIVE－VOYAGE into X",
+      "reservationId": 1003772,
+      "scheduleDate": "2024-08-30T01:12:39.857004",
+      "userId": "userId",
+      "totalSeat": 50,
+      "seatIdList": [19, 32],
+      "totalPrice": 198000,
+      "reservationExpiry": "2024-08-30T12:30:39.857004"
     }
   ]
 }

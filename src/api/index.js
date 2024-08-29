@@ -44,7 +44,7 @@ export const getConcertDetail = async (prodId) => {
   const response = await api.get("/concert", {
     params: { prodId },
   });
-  console.log("kyj response", response);
+
   return response.data;
 };
 
@@ -91,6 +91,11 @@ export const postReservationsPayments = async (
     reservationId,
     amount,
   });
+  return response.data;
+};
+
+export const getCurrentReservation = async () => {
+  const response = await api.get("/current/reservation", {});
   return response.data;
 };
 
