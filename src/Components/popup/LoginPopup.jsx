@@ -46,7 +46,7 @@ const LoginPopup = () => {
         <Input
           type="id"
           placeholder="ID"
-          className="w-1/2 my-5 mx-auto"
+          className="w-1/2 my-5 mx-auto focus:border-none"
           value={inputId}
           onChange={(e) => setInputId(e.target.value)}
         />
