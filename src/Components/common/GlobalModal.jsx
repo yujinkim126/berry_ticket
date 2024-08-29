@@ -1,3 +1,4 @@
+// GlobalModal.js
 import {
   Dialog,
   DialogContent,
@@ -15,12 +16,7 @@ const GlobalModal = () => {
   if (!isOpen) return null;
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={closeModal}
-      onCloseAfter={closeModal}
-      type={"modal"}
-    >
+    <Dialog open={isOpen} onOpenChange={closeModal} type={"modal"}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>

@@ -13,6 +13,7 @@ const ConcertList = () => {
     );
   }
 
+  if (!data) return <></>;
   return (
     <div className="font-[sans-serif] my-4">
       <div className="max-w-5xl max-lg:max-w-2xl mx-auto mt-10">
@@ -31,7 +32,6 @@ const ConcertList = () => {
             <ConcertCard key={idx} concert={concert} />
           ))}
         </div>
-        ;
       </div>
     </div>
   );
