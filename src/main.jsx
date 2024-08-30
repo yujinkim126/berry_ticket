@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ReservationPage from "./Components/reservation/ReservationPage";
 import ConcertDetail from "./components/concertList/ConcertDetail";
 import CurrentReservationPage from "./Components/reservation/CurrentReservationPage";
+import ProtectedRoute from "./route/ProtectedRoute";
 
 async function enableMocking() {
   // 일반적인 경우
@@ -36,16 +37,21 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/concert/:concertId",
-        element: <ConcertDetail />,
-      },
-      {
-        path: "/reservation",
-        element: <ReservationPage />,
-      },
-      {
-        path: "/user/reservation",
-        element: <CurrentReservationPage />,
+        element: <ProtectedRoute />, // 보호된 라우트를 위한 최상위 ProtectedRoute
+        children: [
+          {
+            path: "/concert/:concertId",
+            element: <ConcertDetail />,
+          },
+          {
+            path: "/reservation",
+            element: <ReservationPage />,
+          },
+          {
+            path: "/user/reservation",
+            element: <CurrentReservationPage />,
+          },
+        ],
       },
     ],
   },
