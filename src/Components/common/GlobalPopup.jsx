@@ -1,5 +1,5 @@
 import usePopupStore from "../store/usePopupStore";
-import { Dialog, DialogContent } from "../ui/dialog";
+import { Dialog, DialogContent } from "@ui/dialog";
 
 const GlobalPopup = () => {
   const { isOpen, content, closePopup } = usePopupStore();
