@@ -12,18 +12,15 @@ import CurrentReservationPage from "./Components/reservation/CurrentReservationP
 import ProtectedRoute from "./route/ProtectedRoute";
 
 async function enableMocking() {
-  // 일반적인 경우
-  // if (process.env.NODE_ENV !== 'development') {
-
-  // vite의 경우
-  if (!import.meta.env.DEV) {
+  // VITE_USE_MSW 환경 변수가 true인 경우에만 MSW 활성화
+  if (
+    import.meta.env.VITE_USE_MSW !== "true" &&
+    process.env.NODE_ENV !== "development"
+  ) {
     return;
   }
 
-  // MSW의 worker를 비동기로 import
   const { worker } = await import("./mocks/browser");
-
-  // 서비스 워커 시작
   return worker.start();
 }
 

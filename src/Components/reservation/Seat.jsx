@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import SeatGrid from "./SeatGrid";
 import { getConcertsSeats, postReservationsSeats } from "../../api";
 import useModalStore from "../store/useModalStore";
+import { useNavigate } from "react-router-dom";
+import usePopupStore from "../store/usePopupStore";
 
 const Seat = ({
   contentId,
@@ -14,6 +16,8 @@ const Seat = ({
   const [availableSeats, setAvailableSeats] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const { openModal } = useModalStore();
+  const { closePopup } = usePopupStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSeats = async () => {
@@ -27,7 +31,7 @@ const Seat = ({
 
       setSelectedSeats(initialSelectedSeats);
 
-      // 선점된 좌석이 있다면(재진입) 총 금액 계산
+      // 초기 총 금액 설정
       const initialTotalPrice = initialSelectedSeats.reduce(
         (sum, seat) => sum + seat.price,
         0
@@ -47,7 +51,6 @@ const Seat = ({
 
     postReservationsSeats(reqVo).then((res) => {
       const testAmount = 150000;
-
       if (testAmount < res.response[0]?.totalPrice) {
         openModal({
           title: "예매 실패",
@@ -57,6 +60,10 @@ const Seat = ({
         openModal({
           title: "예매 성공",
           subTitle: "예매가 완료되었습니다.",
+          onAfterClose: () => {
+            closePopup();
+            navigate("/user/reservation");
+          },
         });
       }
     });
@@ -64,14 +71,12 @@ const Seat = ({
 
   const handleSeatClick = (seat) => {
     if (selectedSeats.some((selected) => selected.seatId === seat.seatId)) {
-      // 선택된 좌석이면 해제
       const updatedSeats = selectedSeats.filter(
         (selected) => selected.seatId !== seat.seatId
       );
       setSelectedSeats(updatedSeats);
       setTotalPrice(totalPrice - seat.price);
     } else {
-      // 선택되지 않은 좌석이면 선택
       if (selectedSeats.length < totalSeat) {
         const updatedSeats = [...selectedSeats, seat];
         setSelectedSeats(updatedSeats);
@@ -84,16 +89,9 @@ const Seat = ({
 
   const renderSelectedSeats = () => {
     return selectedSeats.map((seat) => {
-      // 한 줄에 10 좌석으로 설정
       const seatsPerRow = 10;
-
-      // 열을 계산 (0번째 인덱스를 고려하기 위해 -1을 해줌)
       const rowNumber = Math.floor((seat.seatNumber - 1) / seatsPerRow);
-
-      // 열에 대응하는 알파벳을 계산
-      const rowLetter = String.fromCharCode(65 + rowNumber); // 65는 'A'의 아스키 코드
-
-      // 좌석 번호 계산 (1부터 시작하도록 +1)
+      const rowLetter = String.fromCharCode(65 + rowNumber);
       const seatPosition = ((seat.seatNumber - 1) % seatsPerRow) + 1;
 
       return (
@@ -111,17 +109,17 @@ const Seat = ({
   const isButtonDisabled = selectedSeats.length === 0;
 
   return (
-    <div className="flex">
-      <div className="w-3/4 p-4">
+    <div className="flex flex-col md:flex-row md:p-4">
+      <div className="w-full md:w-3/4 md:p-4">
         <SeatGrid
           totalSeat={totalSeat}
           selectedSeats={selectedSeats}
           availableSeats={availableSeats}
-          onSeatClick={handleSeatClick} // 클릭 이벤트 핸들러 전달
+          onSeatClick={handleSeatClick}
         />
       </div>
 
-      <div className="w-1/4 p-4 border-l border-gray-300">
+      <div className="w-full md:w-1/4 md:p-4 md:border-t md:border-t-0 md:border-l border-gray-300">
         <h2 className="text-xl font-semibold mb-4">선택된 좌석</h2>
         <ul>
           {selectedSeats.length === 0 ? (
@@ -149,11 +147,5 @@ const Seat = ({
     </div>
   );
 };
-
-// 좌석 번호에 따라 행(row)을 생성하는 함수
-// const generateRow = (seatNumber) => {
-//   const rowIndex = Math.floor((seatNumber - 1) / 10); // 수정된 로직: 1을 빼서 정확한 행 계산
-//   return String.fromCharCode(65 + rowIndex);
-// };
 
 export default Seat;

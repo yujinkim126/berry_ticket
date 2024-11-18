@@ -13,7 +13,7 @@ const Header = () => {
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
             <img
-              src="../public/img/mainLogo.png"
+              src="/img/mainLogo.png"
               className="w-[8vw] sm:h-9"
               alt="mainLogoIcon"
             />
