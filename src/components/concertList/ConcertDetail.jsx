@@ -72,127 +72,83 @@ const ConcertDetail = () => {
   }
 
   return (
-    <div className="ConcertInfoPage px-4 md:px-0">
-      <div className="flex justify-center mt-10">
-        <ResizablePanelGroup
-          direction="horizontal"
-          className="w-full md:max-w-[1000px] rounded-lg border flex-col md:flex-row"
-        >
-          {/** 공연 포스터 이미지 컨테이너 */}
-          <ResizablePanel defaultSize={35} className="w-full md:w-[35%]">
+    <div className="ConcertInfoPage px-4 lg:px-0 lg:mt-16">
+      <div className="flex justify-center items-center">
+        <div className="w-full max-w-[1000px] rounded-lg border flex flex-col lg:flex-row">
+          {/* 공연 포스터 이미지 컨테이너 */}
+          <div className="w-full lg:w-1/3 flex-shrink-0">
             <img
               src={
                 import.meta.env.VITE_REACT_IMAGE_URL + concertDetail.posterImg
               }
               alt="Concert Poster"
-              className="w-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+              className="w-full object-cover rounded-t-lg lg:rounded-l-lg lg:rounded-t-none"
             />
-          </ResizablePanel>
-          <ResizableHandle />
-          {/** 공연 정보 컨테이너 */}
-          <ResizablePanel
-            defaultSize={65}
-            className="flex flex-col w-full md:w-[65%]"
-          >
-            <ResizablePanelGroup
-              direction="vertical"
-              className="px-4 md:px-10 flex-grow"
-            >
-              {/** 공연 제목 컨테이너 */}
-              <ResizablePanel
-                defaultSize={20}
-                className="flex w-full items-center text-lg md:text-2xl font-semibold mt-4 md:mt-0"
-              >
-                {concertDetail.title}
-              </ResizablePanel>
-              <ResizableHandle />
-              {/** 공연 상세 정보 컨테이너 */}
-              <ResizablePanel
-                defaultSize={50}
-                className="w-full text-xs md:text-sm h-full flex items-center"
-              >
-                <div className="box_consert_info mt-5 flex flex-col md:flex-row items-center w-full">
-                  <dl className="info_left w-full md:w-1/2">
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/3 font-medium">공연기간</dt>
-                      <dd className="txt_info w-2/3" id="periodInfo">
-                        {concertDetail.periodInfo}
-                      </dd>
-                    </div>
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/3 font-medium">관람시간</dt>
-                      <dd className="txt_info w-2/3">
-                        {concertDetail.runningTime}
-                      </dd>
-                    </div>
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/3 font-medium">장르</dt>
-                      <dd className="txt_info w-2/3">
-                        {concertDetail.perfTypeName}
-                      </dd>
-                    </div>
-                  </dl>
+          </div>
 
-                  <dl className="info_right w-full md:w-1/2 mt-4 md:mt-0">
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/3 font-medium">공연장</dt>
-                      <dd className="txt_info w-2/3">
-                        <span className="place">{concertDetail.placeName}</span>
-                      </dd>
-                    </div>
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/3 font-medium">관람등급</dt>
-                      <dd className="txt_info w-2/3">8세 이상</dd>
-                    </div>
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/3 font-medium">할인혜택</dt>
-                      <dd className="txt_info w-2/3">
-                        <span>무이자</span>
-                      </dd>
-                    </div>
-                  </dl>
+          {/* 공연 정보 컨테이너 */}
+          <div className="w-full lg:w-2/3 flex flex-col p-4 lg:p-8 space-y-6 lg:space-y-4">
+            {/* 공연 제목 컨테이너 */}
+            <div className="text-center lg:text-left text-xl lg:text-3xl font-semibold">
+              {concertDetail.title}
+            </div>
+
+            {/* 공연 상세 정보 컨테이너 */}
+            <div className="flex flex-col lg:flex-row lg:justify-between text-sm lg:text-lg space-y-4 lg:space-y-0">
+              <div className="w-full lg:w-1/2 space-y-3">
+                <div className="flex items-center">
+                  <span className="font-medium w-1/3">공연기간</span>
+                  <span className="w-2/3">{concertDetail.periodInfo}</span>
                 </div>
-              </ResizablePanel>
-
-              <ResizableHandle />
-
-              {/** 예약 숙지 정보 컨테이너 */}
-              <ResizablePanel
-                defaultSize={50}
-                className="flex h-full items-center justify-center text-xs md:text-sm"
-              >
-                <div className="box_consert_info mt-5 flex flex-col md:flex-row w-full">
-                  <dl className="info_left w-full">
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/4 font-medium">배송정보</dt>
-                      <dd className="txt_info w-3/4">
-                        {concertDetail.recieveInfo}
-                      </dd>
-                    </div>
-                    <div className="flex mb-2 items-center">
-                      <dt className="tit_info w-1/4 font-medium">문의정보</dt>
-                      <dd className="txt_info w-3/4">{concertDetail.csInfo}</dd>
-                    </div>
-                  </dl>
+                <div className="flex items-center">
+                  <span className="font-medium w-1/3">관람시간</span>
+                  <span className="w-2/3">{concertDetail.runningTime}</span>
                 </div>
-              </ResizablePanel>
+                <div className="flex items-center">
+                  <span className="font-medium w-1/3">장르</span>
+                  <span className="w-2/3">{concertDetail.perfTypeName}</span>
+                </div>
+              </div>
 
-              <ResizableHandle />
-              {/** 예매하기 버튼 컨테이너 */}
-              <ResizablePanel
-                defaultSize={30}
-                className="flex h-full items-center justify-center"
+              <div className="w-full lg:w-1/2 space-y-3">
+                <div className="flex items-center">
+                  <span className="font-medium w-1/3">공연장</span>
+                  <span className="w-2/3">{concertDetail.placeName}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="font-medium w-1/3">관람등급</span>
+                  <span className="w-2/3">8세 이상</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="font-medium w-1/3">할인혜택</span>
+                  <span className="w-2/3">무이자</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 예약 숙지 정보 컨테이너 */}
+            <div className="text-sm lg:text-base space-y-3">
+              <div className="flex items-center">
+                <span className="font-medium w-1/4">배송정보</span>
+                <span className="w-3/4">{concertDetail.recieveInfo}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="font-medium w-1/4">문의정보</span>
+                <span className="w-3/4">{concertDetail.csInfo}</span>
+              </div>
+            </div>
+
+            {/* 예매하기 버튼 컨테이너 */}
+            <div className="flex justify-center lg:items-center mt-6 lg:mt-4 lg:h-full">
+              <button
+                className="w-full lg:w-auto px-6 py-3 lg:px-20 lg:py-5 bg-blue-600 hover:bg-blue-700 text-white text-base lg:text-xl lg:font-semibold rounded-md focus:ring-4 focus:ring-blue-300"
+                onClick={onClickReserveBtn}
               >
-                <Button
-                  className="w-full md:w-auto px-8 py-6 md:px-24 md:py-8 bg-blue-600 hover:bg-blue-700 text-white text-lg md:text-lg rounded-md focus:ring-4 focus:ring-blue-300"
-                  onClick={onClickReserveBtn}
-                >
-                  예매하기
-                </Button>
-              </ResizablePanel>
-            </ResizablePanelGroup>
-          </ResizablePanel>
-        </ResizablePanelGroup>
+                예매하기
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
