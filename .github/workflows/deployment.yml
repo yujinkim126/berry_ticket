@@ -3,7 +3,7 @@ name: Deploy React to S3 and Invalidate CloudFront
 on:
   push:
     branches:
-      - main # 기본 브랜치 이름에 맞게 조정
+      - main
   workflow_dispatch:
 
 jobs:
