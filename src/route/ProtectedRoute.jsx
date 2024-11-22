@@ -1,5 +1,5 @@
-import useLoginStateStore from "@/Components/store/useLoginStateStore";
-import useModalStore from "@/Components/store/useModalStore";
+import useLoginStateStore from "@/components/store/useLoginStateStore";
+import useModalStore from "@/components/store/useModalStore";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {

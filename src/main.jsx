@@ -3,19 +3,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import "../public/css/custom_skeleton.css";
 import App from "./App";
-import Home from "@Components/Home";
+import Home from "@components/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ReservationPage from "./Components/reservation/ReservationPage";
-import ConcertDetail from "./Components/concertList/ConcertDetail";
-import CurrentReservationPage from "./Components/reservation/CurrentReservationPage";
+import ReservationPage from "./components/reservation/ReservationPage";
+import ConcertDetail from "./components/concertList/ConcertDetail";
+import CurrentReservationPage from "./components/reservation/CurrentReservationPage";
 import ProtectedRoute from "./route/ProtectedRoute";
 
 async function enableMocking() {
   // VITE_USE_MSW 환경 변수가 true인 경우에만 MSW 활성화
   if (
     import.meta.env.VITE_USE_MSW !== "true" &&
-    process.env.NODE_ENV !== "development"
+    import.meta.env.MODE !== "development"
   ) {
     return;
   }

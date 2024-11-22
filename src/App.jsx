@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Header from "@Components/Header";
-import GlobalModal from "./Components/common/GlobalModal";
-import GlobalPopup from "./Components/common/GlobalPopup";
+import Header from "./components/Header";
+import GlobalModal from "./components/common/GlobalModal";
+import GlobalPopup from "./components/common/GlobalPopup";
 
 function App() {
   return (
