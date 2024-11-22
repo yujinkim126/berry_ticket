@@ -7,7 +7,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@/Components/ui/dialog";
 import useModalStore from "../store/useModalStore";
 
 const GlobalModal = () => {

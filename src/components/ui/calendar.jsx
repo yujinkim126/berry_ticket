@@ -1,6 +1,6 @@
 import { DayPicker } from "react-day-picker";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/Components/ui/button";
 import { useEffect, useState } from "react";
 
 function Calendar({
@@ -75,11 +75,6 @@ function Calendar({
         day_hidden: "invisible",
         ...classNames,
       }}
-      // components={{
-      //   IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-      //   IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
-      // }}
-      // {...props}
     />
   );
 }

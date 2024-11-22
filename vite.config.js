@@ -15,7 +15,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@Components": path.resolve("./src/Components"),
-      "@ui": path.resolve("./src/components/ui"),
+      "@ui": path.resolve("./src/Components/ui"),
       "@public": path.resolve("./public"), // public 폴더 경로
     },
   },

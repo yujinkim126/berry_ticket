@@ -1,11 +1,5 @@
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
 import { useConcertDetailQuery } from "@/hooks/useConcertQuery";
 import { useParams } from "react-router-dom";
-import { Button } from "@ui/button";
 import QueuePopup from "../popup/QueuePopup";
 import usePopupStore from "../store/usePopupStore";
 import useLoginStateStore from "../store/useLoginStateStore";
