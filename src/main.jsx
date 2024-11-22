@@ -5,7 +5,7 @@ import "../public/css/custom_skeleton.css";
 import App from "./App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ReservationPage from "@/components/reservation/ReservationPage";
+import ReservationPage from "@components/reservation/ReservationPage";
 import ConcertDetail from "@/components/concertList/ConcertDetail";
 import CurrentReservationPage from "@/components/reservation/CurrentReservationPage";
 import ProtectedRoute from "./route/ProtectedRoute";
