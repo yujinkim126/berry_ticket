@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import "../public/css/custom_skeleton.css";
 import App from "./App";
-import Home from "@components/Home";
+import Home from "@components/Home.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ReservationPage from "./Components/reservation/ReservationPage";
