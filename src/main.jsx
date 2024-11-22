@@ -9,7 +9,7 @@ import ReservationPage from "@/components/reservation/ReservationPage";
 import ConcertDetail from "@/components/concertList/ConcertDetail";
 import CurrentReservationPage from "@/components/reservation/CurrentReservationPage";
 import ProtectedRoute from "./route/ProtectedRoute";
-import Home from "./components/Home";
+import Home from "@/components/Home";
 
 async function enableMocking() {
   // VITE_USE_MSW 환경 변수가 true인 경우에만 MSW 활성화@
