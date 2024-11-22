@@ -16,6 +16,7 @@ const Home = () => {
           <h2 className="sm:text-4xl text-2xl font-bold mb-6">
             Concert Reservation
           </h2>
+          <p>Hello.</p>
           <p className="sm:text-lg text-base text-center text-gray-200">
             This is a concert reservation project using React and Vite!
           </p>
