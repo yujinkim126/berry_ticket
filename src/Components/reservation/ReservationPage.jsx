@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ConCertDate from "./ConCertDate";
-import Seat from "./Seat";
+import ConCertDate from "@/components/reservation/ConcertDate";
+import Seat from "@/components/reservation/Seat";
 
 const ReservationPage = ({ initialTab = 0, initialData = null }) => {
   const [selectTab, setSelectTab] = useState(initialTab); // 탭 (0: 일정 1: 좌석)
